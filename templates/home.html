@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FWI Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            width: 400px;
+            margin: auto;
+            border-radius: 8px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        button {
+            background: #ff5722;
+            color: white;
+            border: none;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🔥 Fire Weather Index (FWI) Prediction</h1>
+
+<form action="/predictdata" method="POST">
+
+    <label>Temperature</label>
+    <input type="number" step="any" name="temperature" required>
+
+    <label>Relative Humidity (RH)</label>
+    <input type="number" step="any" name="RH" required>
+
+    <label>Wind Speed (Ws)</label>
+    <input type="number" step="any" name="Ws" required>
+
+    <label>Rain</label>
+    <input type="number" step="any" name="Rain" required>
+
+    <label>FFMC</label>
+    <input type="number" step="any" name="FFMC" required>
+
+    <label>DMC</label>
+    <input type="number" step="any" name="DMC" required>
+
+    <label>ISI</label>
+    <input type="number" step="any" name="ISI" required>
+
+    <label>Classes</label>
+    <select name="Classes" required>
+        <option value="0">No Fire</option>
+        <option value="1">Fire</option>
+    </select>
+
+    <label>Region</label>
+    <select name="Region" required>
+        <option value="0">Bejaia</option>
+        <option value="1">Sidi Bel-Abbes</option>
+    </select>
+
+    <button type="submit">Predict FWI</button>
+</form>
+
+{% if prediction %}
+    <h2>🔥 Predicted FWI: {{ prediction }}</h2>
+{% endif %}
+
+</body>
+</html>
